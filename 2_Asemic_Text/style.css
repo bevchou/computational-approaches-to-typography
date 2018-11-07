@@ -4,3 +4,7 @@ html, body {
   height: 100%;
   width: 100%;
 }
+
+canvas {
+  margin: 30px;
+}
