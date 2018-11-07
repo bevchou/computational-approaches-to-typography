@@ -8,12 +8,12 @@ let pageW = 500;
 let pageH = 600;
 let spaceWidth = 10;
 let lineHeight = 55;
-let highlight = 0;
+let numRows = 10;
 
 function setup() {
   createCanvas(pageW, pageH);
   strokeWeight(1.75);
-  stroke(188,58,22);
+  stroke(188, 58, 22);
   noFill();
 
 }
@@ -22,9 +22,10 @@ function setup() {
 //   translate(0, i*lineHeight);
 
 function draw() {
-  background(168, 166, 196);
+  background(247, 239, 227);
   push();
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < numRows; i++) {
+    hightlight(lineHeight * i + marginTop - 20);
     //track position of text on canvas
     cursorX = marginSide;
     //next line (move if after the first line)
@@ -42,7 +43,7 @@ function draw() {
 
 //function to create a scribble
 //draws a sine wave that is determined by randomly selected amplitude and angle
-function makeLine() {
+function makeWord() {
   let amplitude = [];
   let theta = [];
   let totalTime = 0;
@@ -78,7 +79,7 @@ function makeRow() {
   let widthWriteSpace = pageW - 2 * marginSide - 20;
   //write while there's still width space
   while (cursorX < widthWriteSpace) {
-    makeLine();
+    makeWord();
     //track new position
     //moveCursor is the amount to move the cursor
     let moveCursor = currentWordWidth + spaceWidth;
@@ -94,6 +95,18 @@ function makeRow() {
   pop();
 }
 
+function hightlight(startRow) {
+  //random select to highlight or not
+  let doHighlight = int(random(0, 2));
+  if (doHighlight) {
+    startX = random(0.2, 0.5) * pageW - marginSide;
+    push();
+    noStroke();
+    fill(87, 82, 183, 155);
+    rect(startX, startRow, random(0.2, 0.8) * (pageW - 2 * marginSide), 42);
+    pop();
+  }
+}
 
 //switch it up when you click the mouse
 function mousePressed() {
