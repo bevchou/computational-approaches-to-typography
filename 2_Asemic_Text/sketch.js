@@ -1,3 +1,5 @@
+
+
 //GLOBAL VARIABLES
 //current position of last "word"
 let cursorX;
@@ -11,6 +13,7 @@ let lineHeight = 55;
 let numRows = 10;
 
 function setup() {
+  alert('click to generate new writings.');
   createCanvas(pageW, pageH);
   strokeWeight(1.75);
   stroke(188, 58, 22);
