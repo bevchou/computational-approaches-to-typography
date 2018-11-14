@@ -4,42 +4,50 @@ let compText;
 let lines;
 let words;
 let letters;
-let linesFrac = 0.20;
-let wordsFrac = 0.50;
-let lettersFrac = 0.30;
+let topMargin = 60;
+let leftMargin = 100;
+let width = 390;
+let height = 180;
+let numEyes = 25;
 
 
 function preload() {
-  text = loadStrings('txtmsg_ai.txt');
+  //source - one line from bluets by maggie nelson, pg 14
+  text = loadStrings('poem.txt');
 }
 
 
 function setup() {
-  let myPoem = document.getElementById('myPoem');
-  console.log(myPoem);
+  let poem = document.getElementById('poem');
+  poem.style.fontSize = "16px";
   noCanvas();
+
   //use my text to array class to parse through text file
   compText = new TextToArray(text);
-  lines = compText.makeLineArray();
-  for (let i = 0; i < lines.length * linesFrac; i++) {
-    let eachP = document.createElement('p');
-    myPoem.appendChild(eachP);
-    eachP.innerHTML = lines[i];
-    eachP.style.position = 'absolute';
-    // eachP.style.left = i * 10 + "px";
-    eachP.style.top = i * 20 + "px";
-  }
   words = compText.makeWordArray();
-  console.log(words);
-  for (let i = floor(words.length * linesFrac); i < words.length * wordsFrac; i++) {
+  for (let i = 0; i < words.length; i++) {
     let eachP = document.createElement('p');
-    myPoem.appendChild(eachP);
+    poem.appendChild(eachP);
     eachP.innerHTML = words[i];
     eachP.style.position = 'absolute';
-    eachP.style.left = random(40, 100) + "px";
-    eachP.style.top = 20 * lines.length * linesFrac + random(0, 5) * i + "px";
-
+    eachP.style.left = leftMargin + i * 50 + "px";
+    eachP.style.top = topMargin + i * 20 + "px";
+    eachP.style.transform = "rotate(" + 5 + i * 55 + "deg)";
   }
+  for (let j = 0; j < numEyes; j++) {
+    for (let i = 0; i < numEyes; i++) {
+      let eyes = document.createElement('p');
+      eyes.innerHTML = "i";
+      document.body.appendChild(eyes);
+      eyes.style.position = 'absolute';
+      eyes.style.fontSize = '8px';
+      eyes.style.color = 'blue';
+      eyes.style.left = leftMargin + width / numEyes * i + "px";
+      eyes.style.top = topMargin + height / numEyes * j + "px";
+    }
+  }
+
+
 
 }
 
