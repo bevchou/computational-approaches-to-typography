@@ -6,7 +6,7 @@ let words;
 let letters;
 let topMargin = 60;
 let leftMargin = 100;
-let width = 390;
+let width = 400;
 let height = 180;
 let numEyes = 25;
 
